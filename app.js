@@ -1,24 +1,25 @@
-const express=require('express');
-const axios=require('axios');
-const weatherRoutes=require('./routes/weatherRoutes');
-const dotenv = require('dotenv');
+const express = require('express');
+const connectDB = require('./config/db');
+require('dotenv').config();
 
-
-
-dotenv.config();
-const app=express();
-
+const app = express();
+connectDB();
 
 app.use(express.json());
 
-app.use('/api/weather',weatherRoutes);
+// Middleware to log requests
+// app.use((req, res, next) => {
+//   console.log(`${req.method} request for '${req.url}'`);
+//   next();
+// });
 
+// Use the weather routes
+app.use('/api', require('./routes/weatherRoutes'));
 
-app.get('/', function(req, res){
-    res.send('welcome to weather forecast system');
-})
-
-const port=process.env.PORT || 5000;
-app.listen(port, ()=>{
-    console.log(`server is listening on ${port}`);
+// Simple route for testing server status
+app.get('/', (req, res) => {
+  res.send('Weather API is running');
 });
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
