@@ -1,12 +1,14 @@
 const express = require('express');
 const connectDB = require('./config/db');
 require('dotenv').config();
+const cors= require('cors');
 
 const app = express();
 connectDB();
 
 app.use(express.json());
-
+// Enable CORS for all routes
+app.use(cors());
 // Middleware to log requests
 // app.use((req, res, next) => {
 //   console.log(`${req.method} request for '${req.url}'`);
