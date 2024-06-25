@@ -18,6 +18,7 @@ app.use(cors());
 // Use the weather routes
 app.use('/api', require('./routes/weatherRoutes'));
 
+
 // Simple route for testing server status
 app.get('/', (req, res) => {
   res.send('Weather API is running');

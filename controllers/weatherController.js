@@ -114,10 +114,15 @@ const getHourlyTemp = async (req, res) => {
   }
 };
 
+
+
+
+
 module.exports = {
   getWeatherByCity,
   getWeatherByCoordinates,
   get15DayForecast,
   getTodayCurrentTemp,
   getHourlyTemp,
+ 
 };
